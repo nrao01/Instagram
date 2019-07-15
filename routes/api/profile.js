@@ -96,6 +96,8 @@ router.post('/',
 
         if (req.body.website) profileFields.website = req.body.website;
 
+        if(req.body.story) profileFields.story = req.body.story;
+
         Profile.findOne({user: req.user.id})
         .then(profile => {
             if(profile) {
@@ -162,7 +164,7 @@ router.post(
             Profile.findById(req.params.id)
             .then(profile_one => {
                 if (
-                    profile_one.followers.filter(followers => followers.user.toString() === req.user.id).length == 0
+                    profile_one.followers.filter(followers => followers.user.toString() === req.user.id).length === 0
                 ) {
                     return res.status(400).json('You do not follow this user');
                 }
@@ -207,5 +209,6 @@ router.delete(
         });
     }
 );
+
 
 module.exports =  router;

@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const users = require('./routes/api/users');
 const profile = require('./routes/api/profile');
 const posts = require('./routes/api/posts');
-const story = require('./routes/api/story');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 
@@ -35,7 +34,6 @@ app.get('/', (req, res) => res.send('Hello world, my name is Nikita Rao'));
 app.use('/api/users', users);
 app.use('/api/profile', profile);
 app.use('/api/posts', posts);
-app.use('/api/story', story);
 
 const port = 5001;
 app.listen(port, () => console.log(`Server is running on port ${port}`));
