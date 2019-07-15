@@ -4,9 +4,9 @@ const Schema = mongoose.Schema;
 
 //Create schema
 const PostSchema = new Schema({
-    username: {
-        type: String,
-        required: true
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'users'
     },
     avatar: {
         type: String
@@ -26,15 +26,37 @@ const PostSchema = new Schema({
         type: String
     },
     tags: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Profile'
+        type: Schema.Types.ObjectId,
+        ref: 'users'
     }],
-    comments: [{
-        text: String,
-        postedBy: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'User'
+    likes: [
+        {
+            user: {
+                type: Schema.Types.ObjectId,
+                ref: 'users'
+            }
         }
+    ],
+    comments: [{
+        user: {
+            type: Schema.Types.ObjectId,
+            ref: 'users'
+          },
+          text: {
+            type: String,
+            required: true
+          },
+          name: {
+            type: String
+          },
+          avatar: {
+            type: String
+          },
+          date: {
+            type: Date,
+            default: Date.now
+          }
+        
     }]
 });
 

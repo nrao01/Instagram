@@ -4,12 +4,9 @@ const Schema = mongoose.Schema;
 
 //Create schema
 const ProfileSchema = new Schema({
-    username: {
-        type: String,
-        required: true
-    },
-    avatar: {
-        type: String
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'users'
     },
     bio: {
         type: String
@@ -18,16 +15,20 @@ const ProfileSchema = new Schema({
         type: String
     },
     following: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Profile'
+        user: {
+            type: Schema.Types.ObjectId,
+            ref: 'users'
+        }
     }],
     followers: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Profile'
+        user: {
+            type: Schema.Types.ObjectId,
+            ref: 'users'
+        }  
     }],
     posts: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Post'
+        type: Schema.Types.ObjectId,
+        ref: 'posts'
     }],
     story: {
         type: String
